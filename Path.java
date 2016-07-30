@@ -17,10 +17,9 @@ public class Path {
         path.add(finalNode.getName());
     }
     
-    public void add (Node addThisNode){
-        double weightToAdd = addThisNode.getAdjacencies.get(*INDEX*).getWeight()
-        weight += weightToAdd;
-        path.add(addThisNode.getName());
+    public void add (String addThisNode, double weight){
+        this.weight += weight;
+        path.add(addThisNode);
     }
     
 }
