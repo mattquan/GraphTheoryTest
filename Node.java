@@ -1,5 +1,5 @@
 public class Node {
-    private final String name;
+    private String name;
     private Edge[] adjacencies;
     public Node(String name, Edge[] myEdges) { 
         this.name = name;
@@ -8,7 +8,7 @@ public class Node {
     public String getName() { 
         return name; 
     }
-    public String setName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
     public Edge[] getAdjacentEdges() {
