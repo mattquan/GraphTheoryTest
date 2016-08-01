@@ -12,7 +12,7 @@ public class Path {
     
     //constructor
     public Path (Node initialNode, Node finalNode, double weight){
-        this.weight = this.weight +weight;
+        this.weight = weight;
         path.add(initialNode.getName());
         path.add(finalNode.getName());
     }
