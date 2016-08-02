@@ -5,13 +5,21 @@
  */
 
 package ProjectSahara;
-
+import java.util.*;
 /**
  *
  * @author tinawu
  */
 public class Main {
+    
+    static ArrayList<String> unselected ;
+    static ArrayList<Node> listOfNodes;
+    static ArrayList<Path> container;
+    
     public static void main(String[] args) {
+        listOfNodes = new ArrayList<Node>();
+        unselected = new ArrayList<String>();
+        //Creating the graph
         Node O = new Node("O", new Edge[] {
             new Edge(2, "A", 0), 
             new Edge(5, "B", 1),
@@ -56,5 +64,200 @@ public class Main {
             new Edge(5, "D", 1),
             new Edge(7, "E", 2),
         });
+        
+        unselected.add("A");
+        unselected.add("B");
+        unselected.add("C");
+        unselected.add("D");
+        unselected.add("E");
+        unselected.add("F");
+        //unselected.add("O");
+        unselected.add("T");
+        listOfNodes.add(A);
+        listOfNodes.add(B);
+        listOfNodes.add(C);
+        listOfNodes.add(D);
+        listOfNodes.add(E);
+        listOfNodes.add(F);
+        listOfNodes.add(O);
+        listOfNodes.add(T);
+        
+        //Exploding the first node
+        container = new ArrayList<Path>();
+        for(Edge a: O.getAdjacentEdges()){
+            container.add(new Path("O", a.getTargetNode(), a.getWeight()));
+        }
+        
+        //Choosing the shortest path 
+        Path chosen = container.get(0);
+        int indexOfChosenPath = 0;
+        for (int i =1; i <container.size();i++ ) {
+            if(container.get(i).getWeight() < chosen.getWeight()){
+                chosen = container.get(i);
+                indexOfChosenPath = i;
+            }
+        }
+        System.out.println(unselected);
+        binarySearchAndDestroy(chosen.getLast());
+        System.out.println(unselected);
+        System.out.println(container);
+        
+        //Selecting that node and then adding new paths into my container
+        Node chosenNode = binarySearchAndReturn(chosen.getLast());
+        while (!chosenNode.getName().equals("T")) {
+            System.out.println(chosenNode);
+
+            for (int i =1; i < chosenNode.getAdjacentEdges().length;i++) {
+                cloneAndAdd(indexOfChosenPath,chosenNode.getAdjacentEdges()[i]);
+            }
+            container.get(indexOfChosenPath).add(chosenNode.getAdjacentEdges()[0]);
+            for (int i=container.size()-1; i>=0;i--) {
+                if (!binarySearchAndConfirm(container.get(i))) {
+                    container.remove(i);
+                }
+            }
+            System.out.println(container);
+
+            //Choosing the shortest path 
+            Path chosenSecondTime = container.get(0);
+            int indexOfChosenPathSecondTime = 0;
+            for (int i =1; i <container.size();i++ ) {
+                if(container.get(i).getWeight() < chosenSecondTime.getWeight()){
+                    chosenSecondTime = container.get(i);
+                    indexOfChosenPathSecondTime = i;
+                }
+            }
+            System.out.println(unselected);
+            System.out.println("chosenSecondTime"+chosenSecondTime);
+            binarySearchAndDestroy(chosenSecondTime.getLast());
+            System.out.println(unselected);
+            System.out.println(container);
+            chosenNode = binarySearchAndReturn(chosenSecondTime.getLast());
+        }
+        
+    } 
+    public static void binarySearchAndDestroy(String toBeDestroyed){
+       //returns index of the toBeDestroyed within the array
+       int min = 0;
+       int max = unselected.size()-1;
+       int index;
+       
+       while (max-min > -1){
+           index = (min+max)/2;
+           if (unselected.get(index).equals(toBeDestroyed)){
+               unselected.remove(index);
+           }
+           else if (unselected.get(index).compareToIgnoreCase(toBeDestroyed)<0){
+               min = index+1;
+           }
+           else { //(unselected[center+1] > toBeDestroyed)
+               max = index-1;
+           }
+       }
     }
+    
+    public static Node binarySearchAndReturn(String findThis){
+       //returns index of the toBeDestroyed within the array
+       int min = 0;
+       int max = listOfNodes.size()-1;
+       int index;
+       
+       while (max-min > -1){
+           index = (min+max)/2;
+           if (listOfNodes.get(index).getName().equals((findThis))){
+               //found it!
+               return listOfNodes.get(index);
+           }
+           else if (listOfNodes.get(index).getName().compareToIgnoreCase(findThis)<0){
+               min = index+1;
+           }
+           else { //(unselected[center+1] > toBeDestroyed)
+               max = index-1;
+           }
+          
+       }
+       return null;
+    }
+public static boolean binarySearchAndConfirm(Path checkThis){
+       //returns index of the toBeDestroyed within the array
+       int min = 0;
+       int max = unselected.size()-1;
+       int index;
+       
+       while (max-min > -1){
+           index = (min+max)/2;
+           if (unselected.get(index).equals(checkThis.getLast())){
+               //found it!
+               return true;
+           }
+           else if (unselected.get(index).compareToIgnoreCase(checkThis.getLast())<0){
+               min = index+1;
+           }
+           else { //(unselected[center+1] > toBeDestroyed)
+               max = index-1;
+           }
+          
+       }
+       return false;
+    }
+public static void cloneAndAdd(int indexOfPathIAmCloning, Edge edgeIAmAdding){
+        Path clone = new Path(container.get(indexOfPathIAmCloning));
+        clone.add(edgeIAmAdding);
+        System.out.println("clone"+clone);
+        container.add(clone);
+        
+    }
+    /*public static boolean binarySearchAndConfirm(Path checkThis){
+        boolean found = false;
+        int index = unselected.size()/2;
+        int num = (unselected.size() - index)/2;
+        while(!(unselected.get(index).equals(checkThis.getLast()))){
+            if((checkThis.getLast().compareToIgnoreCase(unselected.get(index).getName())>0)){
+                index = num + index; 
+            }
+            else {
+                index = index - num;
+            }
+            num = (num + 1)/2;
+        }
+    }*/
+    
+    
+    
+    
+    
+    
+    /*public static void binarySearchAndDestroy( String key){
+        int index = unselected.size()/2;
+        int num = (unselected.size() - index)/2;
+        while(!(unselected.get(index).equals(key))){
+            if((key.compareToIgnoreCase(unselected.get(index))>0)){
+                index = num + index; 
+            }
+            else {
+                index = index - num;
+            }
+            num = (num + 1)/2;
+        }
+        unselected.remove(index);
+    }*/
+    
+    /*public static Node binarySearchAndReturn(String key){
+        int index = listOfNodes.size()/2;
+        int num = (listOfNodes.size() - index)/2;
+        while(!(listOfNodes.get(index).equals(key))){
+            if((key.compareToIgnoreCase(listOfNodes.get(index).getName())>0)){
+                index = num + index; 
+            }
+            else {
+                index = index - num;
+            }
+            num = (num + 1)/2;
+        }
+        return listOfNodes.get(index);
+    }*/
+    
+    
+    
+
 }
