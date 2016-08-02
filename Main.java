@@ -110,7 +110,7 @@ public class Main {
             for (int i =1; i < chosenNode.getAdjacentEdges().length;i++) {
                 cloneAndAdd(indexOfChosenPath,chosenNode.getAdjacentEdges()[i]);
             }
-            container.get(indexOfChosenPath).add(chosenNode.getAdjacentEdges()[indexOfChosenPath]);
+            container.get(indexOfChosenPath).add(chosenNode.getAdjacentEdges()[0]);
             
             
             for (int i=container.size()-1; i>=0;i--) {
@@ -130,7 +130,7 @@ public class Main {
             }
             System.out.println("Unselected:"+unselected);
             System.out.println("Container:"+container);
-            System.out.println("chosenSecondTime"+chosenSecondTime);
+            System.out.println("chosenNode"+chosenSecondTime.getLast());
             binarySearchAndDestroy(chosenSecondTime.getLast());
             chosenNode = binarySearchAndReturn(chosenSecondTime.getLast());
             
