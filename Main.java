@@ -91,18 +91,18 @@ public class Main {
         }
         System.out.println("Container:"+container);
         //Choosing the shortest path 
-        Path chosen = container.get(0);
+        Path shortestPath = container.get(0);
         int indexOfChosenPath = 0;
         for (int i =1; i <container.size();i++ ) {
-            if(container.get(i).getWeight() < chosen.getWeight()){
-                chosen = container.get(i);
+            if(container.get(i).getWeight() < shortestPath.getWeight()){
+                shortestPath = container.get(i);
                 indexOfChosenPath = i;
             }
         }
-        binarySearchAndDestroy(chosen.getLast());
+        binarySearchAndDestroy(shortestPath.getLast());
         
         //Selecting that node and then adding new paths into my container
-        Node chosenNode = binarySearchAndReturn(chosen.getLast());
+        Node chosenNode = binarySearchAndReturn(shortestPath.getLast());
         
         //here's my main while loop
         while (!chosenNode.getName().equals("T")) {
@@ -120,21 +120,23 @@ public class Main {
             }
 
             //Choosing the shortest path 
-            Path chosenSecondTime = container.get(0);
+            shortestPath = container.get(0);
             indexOfChosenPath = 0;
             for (int i =1; i <container.size();i++ ) {
-                if(container.get(i).getWeight() < chosenSecondTime.getWeight()){
-                    chosenSecondTime = container.get(i);
+                if(container.get(i).getWeight() < shortestPath.getWeight()){
+                    shortestPath = container.get(i);
                     indexOfChosenPath = i;
                 }
             }
             System.out.println("Unselected:"+unselected);
             System.out.println("Container:"+container);
-            System.out.println("chosenNode"+chosenSecondTime.getLast());
-            binarySearchAndDestroy(chosenSecondTime.getLast());
-            chosenNode = binarySearchAndReturn(chosenSecondTime.getLast());
-            
+            System.out.println("shortestPath:"+shortestPath);
+            binarySearchAndDestroy(shortestPath.getLast());
+            chosenNode = binarySearchAndReturn(shortestPath.getLast());
+            System.out.println("chosenNode:"+chosenNode);
         }
+        
+        System.out.println("This is your shortest path!: "+shortestPath);
         
     } 
     public static void binarySearchAndDestroy(String toBeDestroyed){
@@ -147,6 +149,7 @@ public class Main {
            index = (min+max)/2;
            if (unselected.get(index).equals(toBeDestroyed)){
                unselected.remove(index);
+               break;
            }
            else if (unselected.get(index).compareToIgnoreCase(toBeDestroyed)<0){
                min = index+1;
