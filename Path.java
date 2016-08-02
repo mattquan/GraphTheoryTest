@@ -36,7 +36,7 @@ public class Path {
     
     public void add (Edge edge){
         this.weight += edge.getWeight();
-        System.out.println(edge.getTargetNode());
+        //System.out.println(edge.getTargetNode());
         path.add(edge.getTargetNode());
     }
     

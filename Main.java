@@ -73,6 +73,7 @@ public class Main {
         unselected.add("F");
         //unselected.add("O");
         unselected.add("T");
+        
         listOfNodes.add(A);
         listOfNodes.add(B);
         listOfNodes.add(C);
@@ -81,13 +82,14 @@ public class Main {
         listOfNodes.add(F);
         listOfNodes.add(O);
         listOfNodes.add(T);
-        
+        System.out.println("List of nodes:"+listOfNodes);
+        System.out.println("Unselected:"+unselected);
         //Exploding the first node
         container = new ArrayList<Path>();
         for(Edge a: O.getAdjacentEdges()){
             container.add(new Path("O", a.getTargetNode(), a.getWeight()));
         }
-        
+        System.out.println("Container:"+container);
         //Choosing the shortest path 
         Path chosen = container.get(0);
         int indexOfChosenPath = 0;
@@ -97,42 +99,41 @@ public class Main {
                 indexOfChosenPath = i;
             }
         }
-        System.out.println(unselected);
         binarySearchAndDestroy(chosen.getLast());
-        System.out.println(unselected);
-        System.out.println(container);
         
         //Selecting that node and then adding new paths into my container
         Node chosenNode = binarySearchAndReturn(chosen.getLast());
+        
+        //here's my main while loop
         while (!chosenNode.getName().equals("T")) {
-            System.out.println(chosenNode);
 
             for (int i =1; i < chosenNode.getAdjacentEdges().length;i++) {
                 cloneAndAdd(indexOfChosenPath,chosenNode.getAdjacentEdges()[i]);
             }
-            container.get(indexOfChosenPath).add(chosenNode.getAdjacentEdges()[0]);
+            container.get(indexOfChosenPath).add(chosenNode.getAdjacentEdges()[indexOfChosenPath]);
+            
+            
             for (int i=container.size()-1; i>=0;i--) {
                 if (!binarySearchAndConfirm(container.get(i))) {
                     container.remove(i);
                 }
             }
-            System.out.println(container);
 
             //Choosing the shortest path 
             Path chosenSecondTime = container.get(0);
-            int indexOfChosenPathSecondTime = 0;
+            indexOfChosenPath = 0;
             for (int i =1; i <container.size();i++ ) {
                 if(container.get(i).getWeight() < chosenSecondTime.getWeight()){
                     chosenSecondTime = container.get(i);
-                    indexOfChosenPathSecondTime = i;
+                    indexOfChosenPath = i;
                 }
             }
-            System.out.println(unselected);
+            System.out.println("Unselected:"+unselected);
+            System.out.println("Container:"+container);
             System.out.println("chosenSecondTime"+chosenSecondTime);
             binarySearchAndDestroy(chosenSecondTime.getLast());
-            System.out.println(unselected);
-            System.out.println(container);
             chosenNode = binarySearchAndReturn(chosenSecondTime.getLast());
+            
         }
         
     } 
@@ -203,7 +204,7 @@ public static boolean binarySearchAndConfirm(Path checkThis){
 public static void cloneAndAdd(int indexOfPathIAmCloning, Edge edgeIAmAdding){
         Path clone = new Path(container.get(indexOfPathIAmCloning));
         clone.add(edgeIAmAdding);
-        System.out.println("clone"+clone);
+        //System.out.println("clone"+clone);
         container.add(clone);
         
     }
