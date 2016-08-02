@@ -1,9 +1,17 @@
-package Path;
-import java.util.*;
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+package ProjectSahara;
+
 /**
  *
- * @author yanasang
+ * @author tinawu
  */
+import java.util.*;
+
 public class Path {
     
     //instance variables
@@ -11,15 +19,40 @@ public class Path {
     private ArrayList <String> path = new ArrayList <String> ();
     
     //constructor
-    public Path (Node initialNode, Node finalNode, double weight){
+    public Path (String initialNode, String finalNode, double weight){
         this.weight = weight;
-        path.add(initialNode.getName());
-        path.add(finalNode.getName());
+        path.add(initialNode);
+        path.add(finalNode);
     }
     
-    public void add (String addThisNode, double weight){
-        this.weight += weight;
-        path.add(addThisNode);
+    public Path(Path temp){
+        weight = temp.getWeight();
+        ArrayList<String> newPath = new ArrayList<>();
+        for (int i =0; i <temp.getPath().size();i++) {
+            newPath.add(temp.getPath().get(i));
+        }
+        path = newPath;
     }
     
+    public void add (Edge edge){
+        this.weight += edge.getWeight();
+        System.out.println(edge.getTargetNode());
+        path.add(edge.getTargetNode());
+    }
+    
+    public double getWeight(){
+        return weight;
+    }
+    
+    public ArrayList<String> getPath(){
+        return path;
+    }
+    
+    public String getLast(){
+        return path.get(path.size()-1);
+    }
+   
+    public String toString(){
+        return path.toString();
+    }
 }
