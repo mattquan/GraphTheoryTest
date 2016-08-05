@@ -59,11 +59,11 @@ public class GraphThree implements Graph {
                     
     @Override
     public String endingNode(){
-        return "B";
+        return "F";
                     }
     @Override
     public String startingNode(){
-        return "A";
+        return "C";
     }
                 
 
