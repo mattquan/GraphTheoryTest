@@ -12,10 +12,11 @@ import java.util.Arrays;
  *
  * @author Matt
  */
-public class GraphOne {
-    public static ArrayList<Node> build() {
- //Creating the graph
-    return new ArrayList<>(
+public  class GraphOne implements Graph {
+
+    
+    public ArrayList<Node> build() {
+        return new ArrayList<>(
             Arrays.asList(
                                    
                 new Node("A", new Edge[]{
@@ -55,6 +56,7 @@ public class GraphOne {
                     new Edge(5, "D", 1),
                     new Edge(7, "E", 2),})
             ));
-    
     }
+   
+    
 }
