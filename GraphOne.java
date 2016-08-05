@@ -13,7 +13,7 @@ import java.util.Arrays;
  * @author Matt
  */
 public  class GraphOne implements Graph {
-
+   
     
     public ArrayList<Node> build() {
         return new ArrayList<>(
@@ -56,6 +56,16 @@ public  class GraphOne implements Graph {
                     new Edge(5, "D", 1),
                     new Edge(7, "E", 2),})
             ));
+    }
+
+    @Override
+    public String endingNode() {
+        return "T";
+    }
+
+    @Override
+    public String startingNode() {
+        return "O";
     }
    
     

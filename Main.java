@@ -19,11 +19,13 @@ public class Main {
    
         //System.out.println("Unselected:"+unselected);
         GraphOne g1 = new GraphOne();
-        runDijkstrasAlgorithm(g1.build(),"O");
+        //runDijkstrasAlgorithm(g1.build(),g1.startingNode(),g1.endingNode());
+        GraphTwo g2 = new GraphTwo();
+        runDijkstrasAlgorithm(g2.build(),g2.startingNode(),g2.endingNode());
        
     } 
     
-    public static void runDijkstrasAlgorithm (ArrayList<Node> listOfNodes, String startingNodeString) {
+    public static void runDijkstrasAlgorithm (ArrayList<Node> listOfNodes, String startingNodeString, String endingNodeString) {
         Node startingNode = binarySearchAndReturn(startingNodeString, listOfNodes);
         //building the unselected arraylist
         ArrayList<String> unselected  = new ArrayList<>();
@@ -35,8 +37,8 @@ public class Main {
         
          //Exploding the first node
          ArrayList<Path> container = new ArrayList<>();
-        for(Edge a: startingNode.getAdjacentEdges()){
-            container.add(new Path("O", a.getTargetNode(), a.getWeight()));
+        for(Edge edge: startingNode.getAdjacentEdges()){
+            container.add(new Path(startingNode.getName(), edge.getTargetNode(), edge.getWeight()));
         }
         System.out.println("Container:"+container);
         //Choosing the shortest path 
@@ -54,7 +56,7 @@ public class Main {
         Node chosenNode = binarySearchAndReturn(shortestPath.getLast(),listOfNodes);
         
         //here's my main while loop
-        while (!chosenNode.getName().equals("T")) {
+        while (!chosenNode.getName().equals(endingNodeString)) {
 
             for (int i =1; i < chosenNode.getAdjacentEdges().length;i++) {
                 cloneAndAdd(indexOfChosenPath,chosenNode.getAdjacentEdges()[i],container);
@@ -85,7 +87,7 @@ public class Main {
             System.out.println("chosenNode:"+chosenNode);
         }
         
-        System.out.println("This is your shortest path!: "+shortestPath);
+        System.out.println("This is your shortest path!: "+shortestPath+" with weight "+shortestPath.getWeight());
         
     }
 

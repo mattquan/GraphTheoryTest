@@ -13,4 +13,6 @@ import java.util.ArrayList;
  */
 public interface Graph {
     public ArrayList<Node> build();
+    public String startingNode();    
+    public String endingNode();
 }
