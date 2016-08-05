@@ -22,6 +22,8 @@ public class Main {
         //runDijkstrasAlgorithm(g1.build(),g1.startingNode(),g1.endingNode());
         GraphTwo g2 = new GraphTwo();
         runDijkstrasAlgorithm(g2.build(),g2.startingNode(),g2.endingNode());
+        GraphThree g3 = new GraphThree();
+        runDijkstrasAlgorithm(g3.build(),g3.startingNode(),g3.endingNode());
        
     } 
     
