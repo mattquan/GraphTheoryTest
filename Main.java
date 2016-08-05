@@ -18,8 +18,8 @@ public class Main {
         
    
         //System.out.println("Unselected:"+unselected);
-        
-        runDijkstrasAlgorithm(GraphOne.build(),"O");
+        GraphOne g1 = new GraphOne();
+        runDijkstrasAlgorithm(g1.build(),"O");
        
     } 
     
@@ -28,8 +28,11 @@ public class Main {
         //building the unselected arraylist
         ArrayList<String> unselected  = new ArrayList<>();
         for (Node node:listOfNodes) {
+            if (!node.getName().equals(startingNodeString)) {
             unselected.add(node.getName());
+            }
         } 
+        
          //Exploding the first node
          ArrayList<Path> container = new ArrayList<>();
         for(Edge a: startingNode.getAdjacentEdges()){
