@@ -21,15 +21,18 @@ public class Main {
         GraphOne g1 = new GraphOne();
         //runDijkstrasAlgorithm(g1.build(),g1.startingNode(),g1.endingNode());
         GraphTwo g2 = new GraphTwo();
-        runDijkstrasAlgorithm(g2.build(),g2.startingNode(),g2.endingNode());
+        //runDijkstrasAlgorithm(g2.build(),g2.startingNode(),g2.endingNode());
         GraphThree g3 = new GraphThree();
-        runDijkstrasAlgorithm(g3.build(),g3.startingNode(),g3.endingNode());
+        //runDijkstrasAlgorithm(g3.build(),g3.startingNode(),g3.endingNode());
         GraphFour g4 = new GraphFour();
-    	runDijkstrasAlgorithm(g4.build(),g4.startingNode(),g4.endingNode());
+    	//runDijkstrasAlgorithm(g4.build(),g4.startingNode(),g4.endingNode());
+        GraphSix g6 = new GraphSix();
+        runDijkstrasAlgorithm(g6.build(),g6.startingNode(),g6.endingNode());
        
     } 
     
     public static void runDijkstrasAlgorithm (ArrayList<Node> listOfNodes, String startingNodeString, String endingNodeString) {
+        int counter = 1;
         Node startingNode = binarySearchAndReturn(startingNodeString, listOfNodes);
         //building the unselected arraylist
         ArrayList<String> unselected  = new ArrayList<>();
@@ -61,13 +64,14 @@ public class Main {
         
         //here's my main while loop
         while (!chosenNode.getName().equals(endingNodeString)) {
-
+            counter++;
+            //so this clones and adds the adjcancies to the new paths
             for (int i =1; i < chosenNode.getAdjacentEdges().length;i++) {
                 cloneAndAdd(indexOfChosenPath,chosenNode.getAdjacentEdges()[i],container);
             }
             container.get(indexOfChosenPath).add(chosenNode.getAdjacentEdges()[0]);
             
-            
+            //and this removes all the paths that included the chosen one, cuz we've moved on
             for (int i=container.size()-1; i>=0;i--) {
                 if (!binarySearchAndConfirm(container.get(i),unselected)) {
                     container.remove(i);
@@ -89,6 +93,7 @@ public class Main {
             binarySearchAndDestroy(shortestPath.getLast(),unselected);
             chosenNode = binarySearchAndReturn(shortestPath.getLast(),listOfNodes);
             System.out.println("chosenNode:"+chosenNode);
+            System.out.println("counter:"+counter);
         }
         
         System.out.println("This is your shortest path!: "+shortestPath+" with weight "+shortestPath.getWeight());
@@ -139,7 +144,8 @@ public class Main {
        return null;
     }
 public static boolean binarySearchAndConfirm(Path checkThis, ArrayList<String> unselected){
-       //returns index of the toBeDestroyed within the array
+       //returns a boolean. checks the path. 
+       //will return true if the path's last element is in the unselected.
        int min = 0;
        int max = unselected.size()-1;
        int index;
