@@ -13,9 +13,13 @@ package ProjectSahara;
 public class Node {
     private String name;
     private Edge[] adjacencies;
+    private double weight;
+    private Path minPath;
     public Node(String name, Edge[] myEdges) { 
         this.name = name;
         adjacencies = myEdges;
+        weight = Double.MAX_VALUE;
+        minPath = null;
     }
     public String getName() { 
         return name; 
