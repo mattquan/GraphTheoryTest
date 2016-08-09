@@ -82,7 +82,8 @@ public class GraphSix implements Graph {
                     new Edge(4, "O", 2),
                     new Edge(2, "L", 3),
                     new Edge(5, "N", 4),
-                    new Edge(6, "J", 5)}),
+                    new Edge(2, "P", 5),
+                    new Edge(6, "J", 6)}),
                 new Node("N", new Edge[]{
                     new Edge(4, "K", 0),
                     new Edge(3, "J", 1),

@@ -32,6 +32,70 @@ public class Main {
     } 
     
     public static void runDijkstrasAlgorithm (ArrayList<Node> listOfNodes, String startingNodeString, String endingNodeString) {
+        //creating the unvisited list
+        ArrayList<Node> unvisited = new ArrayList();
+        for (Node node : listOfNodes) {
+            unvisited.add(node);
+        }
+        
+        Node startingNode = binarySearchAndReturn(startingNodeString,listOfNodes);
+        startingNode.setWeight(0);
+        startingNode.setMinPath(new Path(startingNode.getName()));
+        Node endingNode = binarySearchAndReturn(endingNodeString,listOfNodes);
+        
+        Node chosenNode = startingNode;
+        while (chosenNode!=endingNode) {
+            System.out.println("chosenNode"+chosenNode);
+            System.out.println("chosenNodePath"+chosenNode.getMinPath());
+            System.out.println("chosenNodeWeight"+chosenNode.getWeight());
+            //System.out.println(chosenNode);
+            //for each edge in my chosen node, look at that connecting edge and update values if necessary
+            for (Edge edge: chosenNode.getAdjacentEdges()) {
+                Node panda = binarySearchAndReturn (edge.getTargetNode(),listOfNodes);
+                //update if necessary
+                //only if it is IN unvisited
+                //System.out.println("lookingforC"+panda);
+                if (binarySearch(panda,unvisited)) {
+                double suggestedWeight = chosenNode.getWeight()+ edge.getWeight();
+                    if (suggestedWeight<panda.getWeight()) {
+                        //update values
+                        panda.setWeight (suggestedWeight);
+                        String self = panda.getName();
+                        Path path =  new Path(chosenNode.getMinPath());
+                        path.add(self);
+                        panda.setMinPath(path);
+                        //System.out.println("chosenNodePath"+chosenNode.getMinPath());
+                        //System.out.println("panda"+panda);
+                        //System.out.println("pandaPath"+panda.getMinPath());
+                        System.out.println("panda:"+panda);
+                        System.out.println("pandaWeight"+panda.getWeight());
+                    }
+                    else {
+                        System.out.println("did not update becuase wasn't min"+panda);
+                    }
+                }
+                else {
+                    System.out.println("did not look at "+panda);
+                }
+            }
+            binarySearchAndDestroyNode (chosenNode.getName(),unvisited);
+            
+            System.out.println(unvisited);
+            //System.out.println(unvisited);
+            Node minNode = new Node();
+            for (Node node:unvisited) {
+                if (node.getWeight()<minNode.getWeight()) {
+                    minNode = node;
+                }
+            }
+            chosenNode = minNode;
+            
+        }
+        System.out.println("The shortest path is "+endingNode.getMinPath()+"with weight" +endingNode.getWeight());
+        
+    }
+    
+    public static void runFakeDijkstrasAlgorithm (ArrayList<Node> listOfNodes, String startingNodeString, String endingNodeString) {
         int counter = 1;
         Node startingNode = binarySearchAndReturn(startingNodeString, listOfNodes);
         //building the unselected arraylist
@@ -120,7 +184,26 @@ public class Main {
            }
        }
     }
-    
+    public static void binarySearchAndDestroyNode(String toBeDestroyed,ArrayList<Node> searchThis){
+       //returns index of the toBeDestroyed within the array
+       int min = 0;
+       int max = searchThis.size()-1;
+       int index;
+       
+       while (max-min > -1){
+           index = (min+max)/2;
+           if (searchThis.get(index).getName().equals(toBeDestroyed)){
+               searchThis.remove(index);
+               break;
+           }
+           else if (searchThis.get(index).getName().compareToIgnoreCase(toBeDestroyed)<0){
+               min = index+1;
+           }
+           else { //(unselected[center+1] > toBeDestroyed)
+               max = index-1;
+           }
+       }
+    }
     public static Node binarySearchAndReturn(String findThis, ArrayList<Node> listOfNodes){
        //returns index of the toBeDestroyed within the array
        int min = 0;
@@ -157,6 +240,30 @@ public static boolean binarySearchAndConfirm(Path checkThis, ArrayList<String> u
                return true;
            }
            else if (unselected.get(index).compareToIgnoreCase(checkThis.getLast())<0){
+               min = index+1;
+           }
+           else { //(unselected[center+1] > toBeDestroyed)
+               max = index-1;
+           }
+          
+       }
+       return false;
+    }
+
+public static boolean binarySearch(Node checkThis, ArrayList<Node> inThis){
+       //returns a boolean. checks the path. 
+       //will return true if the path's last element is in the unselected.
+       int min = 0;
+       int max = inThis.size()-1;
+       int index;
+       
+       while (max-min > -1){
+           index = (min+max)/2;
+           if (inThis.get(index).getName().equals(checkThis.getName())){
+               //found it!
+               return true;
+           }
+           else if (inThis.get(index).getName().compareToIgnoreCase(checkThis.getName())<0){
                min = index+1;
            }
            else { //(unselected[center+1] > toBeDestroyed)
