@@ -15,20 +15,20 @@ import java.util.*;
 public class Path {
     
     //instance variables
-    private double weight;
+    //private double weight;
     private ArrayList <String> path = new ArrayList <String> ();
     
     //constructor
-    public Path (String initialNode, String finalNode){
+    /*public Path (String initialNode, String finalNode){
         //this.weight = weight;
         path.add(initialNode);
         path.add(finalNode);
-    }
-    public Path (String initialNode, String finalNode, double weight){
+    }*/
+    /*public Path (String initialNode, String finalNode, double weight){
         this.weight = weight;
         path.add(initialNode);
         path.add(finalNode);
-    }
+    }*/
     
     public Path (String initialNode){
         //this.weight = weight;
@@ -45,28 +45,18 @@ public class Path {
 
     
     
-    public void add (Edge edge){
-        //this.weight += edge.getWeight();
-        //System.out.println(edge.getTargetNode());
-        path.add(edge.getTargetNode());
-    }
-    
     public void add (String targetNode) {
         path.add(targetNode);
     }
     
-    public double getWeight(){
-        //return weight;
-        return 0;
-    }
     
     public ArrayList<String> getPath(){
         return path;
     }
     
-    public String getLast(){
+    /*public String getLast(){
         return path.get(path.size()-1);
-    }
+    }*/
    
     public String toString(){
         return path.toString();

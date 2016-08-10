@@ -12,21 +12,7 @@ package ProjectSahara;
  */
 public class Node {
 
-    public double getWeight() {
-        return weight;
-    }
-
-    public void setWeight(double weight) {
-        this.weight = weight;
-    }
-
-    public Path getMinPath() {
-        return minPath;
-    }
-
-    public void setMinPath(Path minPath) {
-        this.minPath = minPath;
-    }
+    
     private String name;
     private Edge[] adjacencies;
     private double weight;
@@ -56,5 +42,19 @@ public class Node {
     public String toString() {
         return name;
     }
+    public double getWeight() {
+        return weight;
+    }
 
+    public void setWeight(double weight) {
+        this.weight = weight;
+    }
+
+    public Path getMinPath() {
+        return minPath;
+    }
+
+    public void setMinPath(Path minPath) {
+        this.minPath = minPath;
+    }
 }
