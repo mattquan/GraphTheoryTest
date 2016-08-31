@@ -14,6 +14,7 @@ public class Node {
 
     
     private String name;
+    private String[] description;
     private Edge[] adjacencies;
     private double weight;
     private Path minPath;
@@ -22,6 +23,13 @@ public class Node {
         adjacencies = myEdges;
         weight = Double.MAX_VALUE;
         minPath = null;
+    }
+    public Node(String name, String[] description, Edge[] myEdges) { 
+        this.name = name;
+        adjacencies = myEdges;
+        weight = Double.MAX_VALUE;
+        minPath = null;
+        this.description = description;
     }
     public Node () {
         weight = Double.MAX_VALUE;
