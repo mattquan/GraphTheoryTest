@@ -26,7 +26,7 @@ public class FloorThree implements Graph{
                 new Node("E8/9-3", elevator, new Edge[]{
                     new Edge(27.445,"desk",0),}),                   
                 new Node("desk", desk, new Edge[]{
-                    new Edge(27.445,"E8/9",0)})       
+                    new Edge(27.445,"E8/9-3",0)})       
                 ));            
                
     }
