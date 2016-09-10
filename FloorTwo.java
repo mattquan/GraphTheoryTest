@@ -19,7 +19,7 @@ public class FloorTwo implements Graph{
         desk.add("Burn Center");
         desk.add("Burn ICU");
         desk.add("Burn Step Down Unit");
-        desk.add("Dept. of Emergency Medicine");
+        desk.add("Department of Emergency Medicine");
 
 
 
