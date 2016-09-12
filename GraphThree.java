@@ -13,7 +13,7 @@ import java.util.Arrays;
  * @author christopherbae
  */
 
-public class GraphThree implements Graph {
+public class GraphThree extends Graph {
     public ArrayList<Node> build() {
         return new ArrayList<>(
             Arrays.asList(
@@ -56,12 +56,10 @@ public class GraphThree implements Graph {
                 ));            
                
     }
-                    
-    @Override
+                  
     public String endingNode(){
         return "F";
-                    }
-    @Override
+    }
     public String startingNode(){
         return "C";
     }

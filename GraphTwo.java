@@ -12,7 +12,7 @@ import java.util.Arrays;
  *
  * @author Matt
  */
-public class GraphTwo implements Graph {
+public class GraphTwo extends Graph {
     public ArrayList<Node> build() {
         return new ArrayList<>(
             Arrays.asList(
@@ -53,12 +53,10 @@ public class GraphTwo implements Graph {
             ));
     }
 
-    @Override
     public String endingNode() {
         return "B";
     }
 
-    @Override
     public String startingNode() {
         return "A";
     }

@@ -12,7 +12,7 @@ import java.util.Arrays;
  *
  * @author Matt
  */
-public  class GraphOne implements Graph {
+public  class GraphOne extends Graph {
    
     
     public ArrayList<Node> build() {
@@ -58,12 +58,10 @@ public  class GraphOne implements Graph {
             ));
     }
 
-    @Override
     public String endingNode() {
         return "T";
     }
 
-    @Override
     public String startingNode() {
         return "O";
     }

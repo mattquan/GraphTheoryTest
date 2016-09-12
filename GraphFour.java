@@ -12,7 +12,7 @@ import java.util.Arrays;
  *
  * @author mattquan
  */
-public class GraphFour implements Graph {
+public class GraphFour extends Graph {
     
     public ArrayList<Node> build() {
         return new ArrayList<>(

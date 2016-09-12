@@ -12,7 +12,7 @@ import java.util.Arrays;
  *
  * @author tinawu
  */
-public class GraphSix implements Graph {
+public class GraphSix extends Graph {
     
     public ArrayList<Node> build() {
         return new ArrayList<>(
@@ -127,12 +127,10 @@ public class GraphSix implements Graph {
             ));
     }
 
-    @Override
     public String endingNode() {
         return "Z";
     }
 
-    @Override
     public String startingNode() {
         return "A";
     }

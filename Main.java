@@ -25,12 +25,14 @@ public class Main {
         GraphFour g4 = new GraphFour();
         //runDijkstrasAlgorithm(g4.build(),g4.startingNode(),g4.endingNode());
         GraphSix g6 = new GraphSix();
-        runDijkstrasAlgorithm(g6.build(), g6.startingNode(), g6.endingNode());
-
+        //runDijkstrasAlgorithm(g6.build(), g6.startingNode(), g6.endingNode());
+        FloorGround fg = new FloorGround();
+        runDijkstrasAlgorithm(fg.build(),Keys.nodeNameEastWingFloorGround,Keys.nodeNameHallwayFloorGroundC);
     }
 
     public static void runDijkstrasAlgorithm(ArrayList<Node> listOfNodes, String startingNodeString, String endingNodeString) {
         //creating the unvisited list
+        System.out.println("listOfNodes"+listOfNodes+"");
         ArrayList<Node> unvisited = new ArrayList();
         for (Node node : listOfNodes) {
             unvisited.add(node);

@@ -11,8 +11,8 @@ import java.util.ArrayList;
  *
  * @author Matt
  */
-public interface Graph {
-    public ArrayList<Node> build();
-    public String startingNode();    
-    public String endingNode();
+public abstract class Graph {
+    public abstract ArrayList<Node> build();
+    //public String startingNode();    
+    //public String endingNode();
 }
