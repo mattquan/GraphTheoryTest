@@ -46,8 +46,22 @@ public class Keys {
                 })
     ));
     
-    public static void add(ArrayList<Node> myList, Node addThis) {
+   public static ArrayList<Node> add(ArrayList<Node> myList, Node addThis) 
+    {
+        for(int index = 0; index < myList.size(); index++)
+        {
+        	String addThisName = addThis.getName();
+        	String nodeInMyListName = myList.get(index).getName();
+        	
+        	if((addThisName.compareToIgnoreCase(nodeInMyListName)) < 0)
+        			{
+        				myList.add(index, addThis);
+        				return myList;
+        			}   	
+        }
         
+        myList.add(addThis);
+        return myList;
     }
 
 }
