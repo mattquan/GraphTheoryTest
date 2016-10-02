@@ -10,8 +10,7 @@ import java.util.*;
  *
  * @author yanasang
  */
-public class FloorFour implements Graph{
-    
+public class FloorFour extends Graph{
     public ArrayList<Node> build() {
         
         
