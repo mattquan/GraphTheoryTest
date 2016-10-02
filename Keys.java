@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ProjectSahara;
+package projectsahara;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -19,6 +19,15 @@ public class Keys {
     final public static String nodeNameHallwayFloorGroundC = "hallwayFloorGroundC";
     final public static String nodeNameEastWingFloorGround = "eastWingGround";
     final public static String nodeNameElevatorFloorGround = "elevatorFloorGround";
+    
+    //floor one
+    final public static String nodeNameHallwayFloorOneA = "hallwayFloorOneA";
+    final public static String nodeNameHallwayFloorOneB = "hallwayFloorOneB";
+    final public static String nodeNameHallwayFloorOneC = "hallwayFloorOneC";
+    final public static String nodeNameHallwayFloorOneD = "hallwayFloorOneD";
+    final public static String nodeNameHallwayFloorOneE = "hallwayFloorOneE";
+    final public static String nodeNameHallwayFloorOneF = "hallwayFloorOneF";
+    final public static String nodeNameElevatorFloorOne = "elevatorFloorOne";
     
     //floor two
     final public static String nodeNameElevatorFloorTwo = "elevatorFloorTwo";
@@ -38,6 +47,32 @@ public class Keys {
             "Department of Emergency Medicine"
     ));
     
+
+    //floor three
+    final public static String nodeNameElevatorFloorThree = "elevatorFloorThree";
+    final public static String nodeNameDeskFloorThree = "deskFloorThree";
+    final public static ArrayList<String> descriptionDeskFloorThree = new ArrayList<>(Arrays.asList(
+            "NICU",
+            "premature babies",
+            "neonatal intensive care unit",
+            "babies",
+            "baby",
+            "preemies" 
+    ));  
+    
+    //floor four
+    final public static String nodeNameElevatorFloorFour = "elevatorFloorFour";
+    final public static String nodeNameDeskFloorFour = "deskFloorFour";
+    final public static ArrayList<String> descriptionDeskFloorFour = new ArrayList<>(Arrays.asList(
+            "PICU",
+            "pediatric",
+            "childrens center",
+            "kids",
+            "pediatric intensive care unit"
+    ));
+    
+          
+            
     //rooms!
     final public static ArrayList<Node> floorGroundRooms = new ArrayList<>(Arrays.asList(
             new Node(Keys.nodeNameEastWingFloorGround,  new Edge[]{
@@ -45,6 +80,11 @@ public class Keys {
                     new Edge(369,Keys.nodeNameHallwayFloorGroundB,1)
                 })
     ));
+    
+   
+    
+            
+            
     
    public static ArrayList<Node> add(ArrayList<Node> myList, Node addThis) 
     {
