@@ -4,29 +4,23 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package ProjectSahara;
+package projectsahara;
 import java.util.*;
 /**
  *
  * @author yanasang
  */
-public class FloorThree implements Graph{
+public class FloorThree extends Graph{
     
     public ArrayList<Node> build() {
-        ArrayList <String> elevator = new ArrayList();
-        elevator.add("third floor elevator");
-        ArrayList <String> desk = new ArrayList();
-        desk.add("NICU");
-        desk.add("premature babies");
-        desk.add("neonatal intensive care unit");
-        desk.add("babies");
-        desk.add("preemies");
+        
+        
         return new ArrayList<>(
             Arrays.asList( 
-                new Node("E8/9-3", elevator, new Edge[]{
-                    new Edge(27.445,"desk",0),}),                   
-                new Node("desk", desk, new Edge[]{
-                    new Edge(27.445,"E8/9-3",0)})       
+                new Node(Keys.nodeNameElevatorFloorThree, new Edge[]{
+                    new Edge(27.445,Keys.nodeNameDeskFloorThree,0),}),                   
+                new Node(Keys.nodeNameDeskFloorThree, new Edge[]{
+                    new Edge(27.445,Keys.nodeNameElevatorFloorThree,0)})       
                 ));            
                
     }
